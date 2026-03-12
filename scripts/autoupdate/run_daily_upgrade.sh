@@ -82,7 +82,21 @@ PY
 
 python3 -m py_compile openclaw_workspace_doctor/cli.py
 
-if ! git diff --quiet; then
+# QUALITY GATE
+CHANGED_FILES=$(git diff --name-only | wc -l | tr -d ' ')
+ADDED_LINES=$(git diff --numstat | awk '{a += $1} END {print a+0}')
+MEANINGFUL=0
+if [ "$CHANGED_FILES" -ge 2 ]; then
+  MEANINGFUL=1
+fi
+if [ "$ADDED_LINES" -ge 12 ]; then
+  MEANINGFUL=1
+fi
+if git diff --name-only | grep -Eq 'openclaw_workspace_doctor/cli.py|pyproject.toml|README.md|CHANGELOG.md|.github/workflows'; then
+  MEANINGFUL=1
+fi
+
+if ! git diff --quiet && [ "$MEANINGFUL" -eq 1 ]; then
   git add .
   git commit -m "feat: daily upgrade $(date +%F)" || true
   git push origin main
@@ -100,8 +114,17 @@ if ! git diff --quiet; then
   } > "$SUMMARY"
   echo "[$(date -Is)] pushed changes"
 else
+  git reset --hard HEAD >/dev/null 2>&1 || true
   echo "# Daily Upgrade $(date +%F)" > "$SUMMARY"
   echo >> "$SUMMARY"
-  echo "No meaningful changes were generated today." >> "$SUMMARY"
-  echo "[$(date -Is)] no changes"
+  if [ "${MEANINGFUL:-0}" -eq 0 ]; then
+    echo "Changes were generated but failed the quality gate, so nothing was pushed." >> "$SUMMARY"
+    echo >> "$SUMMARY"
+    echo "- changed_files: ${CHANGED_FILES:-0}" >> "$SUMMARY"
+    echo "- added_lines: ${ADDED_LINES:-0}" >> "$SUMMARY"
+    echo "[$(date -Is)] quality gate blocked push"
+  else
+    echo "No meaningful changes were generated today." >> "$SUMMARY"
+    echo "[$(date -Is)] no changes"
+  fi
 fi
