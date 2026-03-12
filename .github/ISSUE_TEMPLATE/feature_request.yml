@@ -1,0 +1,13 @@
+name: Feature request
+description: Suggest a new workspace audit check
+body:
+  - type: textarea
+    attributes:
+      label: What check would you like added?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Why is it useful?
+    validations:
+      required: true

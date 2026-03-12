@@ -1,0 +1,22 @@
+name: Bug report
+description: Report a problem with the audit results
+body:
+  - type: textarea
+    attributes:
+      label: What happened?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Workspace layout / relevant files
+  - type: input
+    attributes:
+      label: OpenClaw version
+  - type: input
+    attributes:
+      label: OS / architecture

@@ -44,3 +44,24 @@ OpenClaw workspaces are easy to get running, but they drift. This tool gives a q
 ## License
 
 MIT
+
+
+## Why someone would star this
+
+- Useful for anyone running OpenClaw in a real workspace
+- Turns fuzzy setup mistakes into concrete audit output
+- Small, readable, hackable utility instead of a big framework
+- Easy place to contribute more checks for the ecosystem
+
+## Roadmap
+
+- [ ] Add JSON output mode
+- [ ] Add exit-code profiles for CI usage
+- [ ] Add checks for empty placeholder files
+- [ ] Add tests with sample workspaces
+- [ ] Add GitHub Action example for scheduled workspace audits
+
+## Positioning
+
+This project is intentionally narrow: it does one thing well—sanity-check an OpenClaw workspace.
+That makes it easy to adopt, easy to review, and easy to extend.
