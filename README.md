@@ -28,6 +28,7 @@ openclaw-workspace-doctor /path/to/workspace
 openclaw-workspace-doctor --json /path/to/workspace
 openclaw-workspace-doctor --strict /path/to/workspace
 openclaw-workspace-doctor --markdown /path/to/workspace
+openclaw-workspace-doctor --summary-only /path/to/workspace
 ```
 
 If no path is given, it uses the current directory.
