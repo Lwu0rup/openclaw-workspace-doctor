@@ -1,5 +1,9 @@
 # openclaw-workspace-doctor
 
+[![CI](https://github.com/Lwu0rup/openclaw-workspace-doctor/actions/workflows/python-check.yml/badge.svg)](https://github.com/Lwu0rup/openclaw-workspace-doctor/actions/workflows/python-check.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue)](./pyproject.toml)
+
 A small CLI that audits an OpenClaw workspace and reports common setup issues.
 
 ## What it checks
@@ -45,6 +49,21 @@ OpenClaw workspaces are easy to get running, but they drift. This tool gives a q
 
 MIT
 
+
+
+## Demo
+
+```text
+$ openclaw-workspace-doctor /root/.openclaw/workspace
+Workspace: /root/.openclaw/workspace
+PASS  AGENTS.md found
+PASS  SOUL.md found
+PASS  USER.md found
+PASS  HEARTBEAT.md found
+WARN  USER.md still looks like the default template
+WARN  tasks/QUEUE.md still contains template placeholders
+PASS  skills/self-improving/SKILL.md found
+```
 
 ## Why someone would star this
 
