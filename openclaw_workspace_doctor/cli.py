@@ -122,25 +122,35 @@ def print_text(target: Path, results: list[dict]) -> None:
     for r in results:
         print(f"{r['level']:<5} {r['message']}")
 
+def print_markdown(target: Path, results: list[dict], summary: dict) -> None:
+    print(f"# Workspace Audit\n")
+    print(f"- Workspace: `{target}`")
+    print(f"- PASS: {summary['PASS']}  WARN: {summary['WARN']}  FAIL: {summary['FAIL']}\n")
+    for r in results:
+        print(f"- **{r['level']}** — {r['message']}")
+
 
 def parse_args(argv: list[str]):
     target = None
     json_mode = False
+    markdown_mode = False
     strict = False
     for arg in argv[1:]:
         if arg == "--json":
             json_mode = True
         elif arg == "--strict":
             strict = True
+        elif arg == "--markdown":
+            markdown_mode = True
         elif arg.startswith("-"):
             raise SystemExit(f"Unknown option: {arg}")
         else:
             target = Path(arg)
-    return (target or Path.cwd()).resolve(), json_mode, strict
+    return (target or Path.cwd()).resolve(), json_mode, markdown_mode, strict
 
 
 def main() -> int:
-    target, json_mode, strict = parse_args(sys.argv)
+    target, json_mode, markdown_mode, strict = parse_args(sys.argv)
     results = check_workspace(target)
     summary = summarize(results)
 
@@ -150,6 +160,8 @@ def main() -> int:
             "summary": summary,
             "results": results,
         }, ensure_ascii=False, indent=2))
+    elif markdown_mode:
+        print_markdown(target, results, summary)
     else:
         print_text(target, results)
         print(f"\nSummary: PASS={summary['PASS']} WARN={summary['WARN']} FAIL={summary['FAIL']}")

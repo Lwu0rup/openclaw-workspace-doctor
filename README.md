@@ -27,6 +27,7 @@ pip install .
 openclaw-workspace-doctor /path/to/workspace
 openclaw-workspace-doctor --json /path/to/workspace
 openclaw-workspace-doctor --strict /path/to/workspace
+openclaw-workspace-doctor --markdown /path/to/workspace
 ```
 
 If no path is given, it uses the current directory.
@@ -92,3 +93,9 @@ That makes it easy to adopt, easy to review, and easy to extend.
 - `0`: no failures (warnings allowed unless `--strict`)
 - `1`: warnings present in `--strict` mode
 - `2`: one or more hard failures
+
+## Output modes
+
+- `--json`: machine-readable output
+- `--markdown`: markdown report output
+- default: human-readable text
