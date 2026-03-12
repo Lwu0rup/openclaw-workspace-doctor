@@ -25,6 +25,8 @@ pip install .
 
 ```bash
 openclaw-workspace-doctor /path/to/workspace
+openclaw-workspace-doctor --json /path/to/workspace
+openclaw-workspace-doctor --strict /path/to/workspace
 ```
 
 If no path is given, it uses the current directory.
@@ -84,3 +86,9 @@ PASS  skills/self-improving/SKILL.md found
 
 This project is intentionally narrow: it does one thing well—sanity-check an OpenClaw workspace.
 That makes it easy to adopt, easy to review, and easy to extend.
+
+## Exit codes
+
+- `0`: no failures (warnings allowed unless `--strict`)
+- `1`: warnings present in `--strict` mode
+- `2`: one or more hard failures
