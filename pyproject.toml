@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openclaw-workspace-doctor"
+version = "0.1.0"
+description = "Audit an OpenClaw workspace and report common setup issues"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "Lwu0rup" }
+]
+license = { text = "MIT" }
+keywords = ["openclaw", "cli", "workspace", "audit"]
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Environment :: Console",
+]
+
+[project.scripts]
+openclaw-workspace-doctor = "openclaw_workspace_doctor.cli:main"
