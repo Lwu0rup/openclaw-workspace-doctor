@@ -100,3 +100,11 @@ That makes it easy to adopt, easy to review, and easy to extend.
 - `--json`: machine-readable output
 - `--markdown`: markdown report output
 - default: human-readable text
+
+## CI usage
+
+```bash
+openclaw-workspace-doctor --strict .
+```
+
+Use `--strict` in CI if warnings should fail the run.
