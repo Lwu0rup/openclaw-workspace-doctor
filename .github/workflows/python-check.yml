@@ -18,3 +18,5 @@ jobs:
         run: python -c "import openclaw_workspace_doctor; print(openclaw_workspace_doctor.__version__)"
       - name: Run doctor against repo root
         run: openclaw-workspace-doctor . || true
+      - name: Run JSON mode
+        run: openclaw-workspace-doctor --json .
